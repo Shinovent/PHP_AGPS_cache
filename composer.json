@@ -1,0 +1,20 @@
+{
+    "name": "shinovent/php_agps_cache",
+    "description": "PHP Class for parsing OpenCellID AGPS cell tower data to APCu cache.",
+    "type": "library",
+    "keywords": ["agps", "tracking", "gps"],
+    "license": "MIT",
+    "homepage": "https://shinovent.fi",
+    "authors": [
+        {
+            "name": "Jarkko Hautakorpi",
+            "email": "jarkko.hautakorpi@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^7.1"
+    },
+    "require": {
+        "php": "^7.0"
+    }
+}
