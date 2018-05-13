@@ -16,5 +16,9 @@
     },
     "require": {
         "php": "^7.0"
+    },
+    "suggest": {
+        "ext-apc": "APC extension is required to use the APC Adapter",
+        "ext-apcu": "APCu extension is required to use the APCu Adapter"
     }
 }
