@@ -98,7 +98,7 @@ class AGPS_location
             ) {
                 continue;
             }
-            echo "\nSTORE: " . $this->towerToString($row);
+
             $success = apcu_store($this->towerToString($row), array(
                 'lat' => $row[self::LATITUDE_KEY],
                 'lon' => $row[self::LONGITUDE_KEY]
