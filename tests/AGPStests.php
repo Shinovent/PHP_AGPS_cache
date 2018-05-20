@@ -20,7 +20,7 @@ final class AGPStests extends TestCase
     ) {
         parent::__construct($name, $data, $dataName);
         $this->csvfile = __DIR__ . '/244_GSM.csv';
-        $this->agps = $agps = new Shin\AGPS_location($this->csvfile);
+        $this->agps = new Shin\AGPS_location($this->csvfile);
     }
 
     public function testCsvFileIsReadable()
@@ -53,7 +53,7 @@ final class AGPStests extends TestCase
         );
     }
 
-    public function testCsvIsReadIntoAPCu(): void
+    public function testCsvIsReadIntoApcu(): void
     {
         // line 23: GSM,244,5,2040,62439,0,22.169596,60.482671,1990,11,1,1320924774,1478522873,0
         $this->agps->createCellTowerTable();
@@ -73,5 +73,33 @@ final class AGPStests extends TestCase
         );
         $this->assertEquals('22.169596', $location['lat']);
         $this->assertEquals('60.482671', $location['lon']);
+    }
+
+    public function testFilteredParsing()
+    {
+        apcu_clear_cache();
+        $this->agps = new Shin\AGPS_location($this->csvfile, array('244'), array('91'), array('GSM'));
+        $this->agps->createCellTowerTable();
+
+        $location = $this->agps->getCellTowerLocation(
+            '244',
+            '91',
+            '4111',
+            '11921'
+        );
+        $this->assertEquals('24.056625', $location['lat']);
+        $this->assertEquals('61.197968', $location['lon']);
+    }
+
+    public function testFilteredOutTowerIsNotInCache()
+    {
+        $location = $this->agps->getCellTowerLocation(
+            '244',
+            '5',
+            '2040',
+            '62439'
+        );
+
+        $this->assertEquals(false, $location);
     }
 }

@@ -78,7 +78,7 @@ class AGPS_location
             // Filter by mobile phone standard
             if (
                 !empty($this->standardFilter) &&
-                in_array($row[self::STANDARD_KEY], $this->standardFilter)
+                !in_array($row[self::STANDARD_KEY], $this->standardFilter)
             ) {
                 continue;
             }
@@ -86,7 +86,7 @@ class AGPS_location
             // Filter by country code
             if (
                 !empty($this->countryFilter) &&
-                in_array($row[self::MCC_KEY], $this->countryFilter)
+                !in_array($row[self::MCC_KEY], $this->countryFilter)
             ) {
                 continue;
             }
@@ -94,7 +94,7 @@ class AGPS_location
             // Filter by operator
             if (
                 !empty($this->operatorFilter) &&
-                in_array($row[self::MNC_KEY], $this->operatorFilter)
+                !in_array($row[self::MNC_KEY], $this->operatorFilter)
             ) {
                 continue;
             }
